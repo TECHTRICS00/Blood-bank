@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - IoT Blood Bank Management</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Critical CSS -->
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .main-heading {
+            font-size: 1.5rem;
+            color: #ffeb3b;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #ff5733;
+        }
+
+        /* Profile Section */
+        .profile-section, .chart-section, .info-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .profile-section:hover, .chart-section:hover, .info-section:hover {
+            transform: translateY(-10px);
+        }
+
+        .profile-details {
+            text-align: center;
+        }
+
+        .profile-details img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #e74c3c;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .profile-details input {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .profile-details input:focus {
+            border-color: #e74c3c;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+
+        /* Chart Section */
+        .chart-section h3 {
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+
+        .blood-group-controls {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .blood-group-controls input, .blood-group-controls select {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        /* Info Section */
+        .info-section h3 {
+            color: #e74c3c;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-details input {
+                width: 100%;
+            }
+
+            .blood-group-controls {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            .main-heading {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IoT Blood Bank Management</h1>
+        <h2 class="main-heading">Welcome, <span id="userName">User</span></h2>
+        <nav>
+            <ul>
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="change_password.html">Change Password</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="hoslogin.html" onclick="logout()">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <h2>Hospital Profile Information</h2>
+            <div class="profile-details">
+                <label for="profileImageInput">
+                    <img id="profileImage" src="" alt="Profile Image" style="cursor:pointer;">
+                </label>
+                <input type="file" id="profileImageInput" accept="image/*" style="display:none;" onchange="loadImage(event)">
+                <p><strong>Name:</strong> <input type="text" id="profileNameInput" placeholder="Enter hospital name"></p>
+                <p><strong>Email:</strong> <input type="email" id="profileEmailInput" placeholder="Enter email"></p>
+                <p><strong>Location:</strong> <input type="text" id="profileLocationInput" placeholder="Enter location"></p>
+                <p><strong>Contact Number:</strong> <input type="tel" id="profileContactInput" placeholder="Enter contact number"></p>
+                <p><strong>Established Year:</strong> <input type="number" id="profileYearInput" placeholder="Enter established year"></p>
+                <button onclick="saveProfile()">Save</button>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section">
+            <h3>Blood Group Availability</h3>
+            <div class="blood-group-controls">
+                <input type="number" id="bloodGroupAmount" placeholder="Enter amount">
+                <select id="bloodGroupSelect">
+                    <!-- Blood group options here -->
+                </select>
+                <button id="saveBloodGroup">Save</button>
+            </div>
+            <canvas id="bloodGroupChart"></canvas>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <h3>Additional Information</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac nulla nunc. Integer feugiat.</p>
+            <p>Donec non eros eget enim auctor euismod et in ligula. Sed vestibulum lectus vitae felis fermentum, non consequat nisl luctus.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IoT Blood Bank Management. All Rights Reserved.</p>
+        <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+
+    <script>
+        function loadImage(event) {
+            const output = document.getElementById('profileImage');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src);
+            }
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('profileNameInput').value;
+            const email = document.getElementById('profileEmailInput').value;
+            const location = document.getElementById('profileLocationInput').value;
+            const contact = document.getElementById('profileContactInput').value;
+            const year = document.getElementById('profileYearInput').value;
+
+            console.log("Profile Saved: ", { name, email, location, contact, year });
+        }
+
+        function logout() {
+            console.log("User logged out");
+        }
+    </script>
+</body>
+</html>
